@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="test">Hello Vue</div>
-    <count-down col='blue'></count-down>
+    <count-down col='blue' @end='ending'></count-down>
 </div>
 </template>
 <script>
@@ -28,6 +28,11 @@ export default {
     },
     components:{
         "count-down": countdown
-    } 
+    },
+    methods:{
+      ending(){
+          alert("已经结束了")
+      }
+  } 
 }
 </script>

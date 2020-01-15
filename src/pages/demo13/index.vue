@@ -5,7 +5,7 @@
     <!-- https://router.vuejs.org/zh-cn/ -->
     <router-link to="/demo9">demo9</router-link>
     <div>------------------------------------</div>
-    <router-link :to="{name:'demo1', params:{userId: 123}}">demo1</router-link>
+    <router-link :to="{name:'demo9', params:{userId: 123}}">demo9</router-link>
     <!-- localhost:8080/#/demo1/123 -->
     <div>------------------------------------</div>
     <router-link :to="{name:'demo1', params:{userId: 123}, query:{plan: 'private'}}">query</router-link>
