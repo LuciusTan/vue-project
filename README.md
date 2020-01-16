@@ -28,7 +28,7 @@
 
 4.安装依赖包,打包项目
   cd my-project
-  npm install
+  npm install (npm版本号不一致时会修改package-lock.json文件，可使用 npm install -no--save 解决)
   npm run dev
 ```
 
