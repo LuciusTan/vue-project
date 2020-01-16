@@ -7,6 +7,7 @@ import store from './store/'
 import vueResource from 'vue-resource'
 import mintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
+import './config/rem'
 
 Vue.use(vueResource);
 Vue.use(mintUI);

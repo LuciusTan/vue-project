@@ -294,7 +294,30 @@ components:{
 
 5.在mounted里面直接调用 Toast('提示信息');
 ```
+> Section 18 一个小demo--home/detail
 
+```
+#此demo为移动端项目
+  1.在App.vue中注释掉vue logo和页面默认样式，在main.js中引用 import './config/rem'
+
+  2.npm install px2rem-loader
+
+  3.build -> untils.js
+  修改:
+    const px2remLoader = {
+      loader: 'px2rem-loader',
+      options: {
+        remUnit: 50 //自定义
+      }
+    }
+    // generate loader string to be used with extract text plugin
+    function generateLoaders (loader, loaderOptions) {
+      const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader,px2remLoader]
+
+  4.自动转化
+    width: 20px;          自动将20px转化为rem
+    height: 40px; /*no*/  禁止将40px转化成rem
+```
 
 
 

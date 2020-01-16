@@ -18,6 +18,8 @@ import demo14 from '@/pages/demo14/index.vue'
 import demo15 from '@/pages/demo15/index.vue'
 import demo16 from '@/pages/demo16/index.vue'
 import demo17 from '@/pages/demo17/index.vue'
+import home from '@/pages/test/index.vue'
+import detail from '@/pages/test/detail.vue'
 
 Vue.use(Router)
 
@@ -112,6 +114,16 @@ export default new Router({
       path: '/demo17',
       name: 'demo17',
       component: demo17
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: home
+    },
+    {
+      path: '/home/detail',
+      name: 'detail',
+      component: detail
     },
   ]
 })
