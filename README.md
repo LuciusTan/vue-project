@@ -159,7 +159,8 @@ vue init webpack my-project
 ---
 
 ## Section 9 表单控件绑定 - demo9
-1. v-model 指令在表单控件元素上创建双向数据绑定
+
+v-model 指令在表单控件元素上创建双向数据绑定
 
 复选框/多个勾选框/选择列表
 
@@ -359,12 +360,13 @@ mounted(){
 
 ## Section 18 一个小demo - home/detail
 > 此demo为移动端项目
-1. 在App.vue中注释掉vue logo和页面默认样式，在main.js中引用 
+
+1.在App.vue中注释掉vue logo和页面默认样式，在main.js中引用 
 `import './config/rem'`
 
-2. `npm install px2rem-loader`
+2.`npm install px2rem-loader`
 
-3. build -> untils.js
+3.修改build -> untils.js
 
 修改:
 ```
@@ -378,7 +380,8 @@ const px2remLoader = {
 function generateLoaders (loader, loaderOptions) {
 const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader,px2remLoader]
 ```
-4. 自动转化
+
+4.自动转化
 
 width: 20px;          自动将20px转化为rem
 
