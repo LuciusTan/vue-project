@@ -20,6 +20,7 @@ import demo16 from '@/pages/demo16/index.vue'
 import demo17 from '@/pages/demo17/index.vue'
 import home from '@/pages/test/index.vue'
 import detail from '@/pages/test/detail.vue'
+import clickbtn from '@/pages/test/clickBtn.vue'
 
 Vue.use(Router)
 
@@ -124,6 +125,11 @@ export default new Router({
       path: '/home/detail',
       name: 'detail',
       component: detail
+    },
+    {
+      path: '/home/clickBtn',
+      name: 'clickbtn',
+      component: clickbtn
     },
   ]
 })

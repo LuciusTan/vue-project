@@ -387,7 +387,11 @@ width: 20px;          自动将20px转化为rem
 
 height: 40px; /*no*/  禁止将40px转化成rem
 
+5.设计稿宽度是多少px就将页面宽度拉至该px值，查看html style宽度是多少，将上方px2remLoader的remUnit值做出相应修改
 
+6.<li>标签设置inline-block，代码内换行会多出4px的间隔，高度也会影响
+
+解决方法多种，1) 代码不换行；2) 父盒子加上font-size:0;
 
 
 
