@@ -155,3 +155,253 @@ vue init webpack my-project
 #### 用法1：v-for = 'items in items' 数组
 #### 用法2：v-for = "(item,index) in items" 数组
 #### 用法3：v-for = "(value, key) in object" 对象
+
+---
+
+## Section 9 表单控件绑定 - demo9
+1. v-model 指令在表单控件元素上创建双向数据绑定
+
+复选框/多个勾选框/选择列表
+
+## Section 10 自定义组件 - demo10
+### 1.组件写到components文件夹下
+
+例如：自定义个一个倒计时组件
+
+步骤：
+
+1. components写组件
+2. import 引用到页面 
+`import mycomponent from '@/components/mycomponent.vue'`
+3. 注册组件 
+```
+components:{
+  mycomponent
+  //亦可为标签命名
+  "my-conponement": mycomponent;
+}
+```
+4. templete中使用，以标签的形式  
+`<mycomponent></mycomponent>、<my-component></my-component>`
+      
+### 2.基本要素：props、$emit等
+* props用来传值，可定制各页面不同效果
+* $emit用来处理各页面组件事件结束后的自有事件
+  
+### 3.通过import导入自定义组件
+
+---
+
+## Section 11 DOM操作 - demo11
+### 1.this.$refs
+> mounted中DOM已经生成，为真实DOM，所以DOM操作在mounted函数内进行，例如： 
+`this.$refs.head.innerHTML = 'hello Vue'`
+
+---
+
+## Section 12 过渡效果 - demo12
+### 1.<transition></transition>标签的形式写在templete中
+### 2.通过样式方式写过渡, 以fade为例
+```
+fade-leave(可忽略) -> fade-leave-active -> fade-leave-to
+fade-enter -> fade-enter-active -> fade-enter-to(可忽略)
+```
+
+---
+
+## Section 13 路由 vue-router - demo13
+> npm install 引入vue-router包（自建项目需要）, 若使用vue init生成的项目可忽略此步
+
+### 1.页面跳转功能
+
+用法1：
+`<router-link to='/demo1'>demo1</router-link>`
+
+用法2：
+```
+<router-link :to="{name:'demo1', params:{userId: 123}}">demo1</router-link>
+跳转并传值，需要修改index.js 中 path: '/demo9/:userId'
+获取传值，demo9页面中，写在mounted内，this.$route.params.userId
+url传参(query) :to="{name:'demo9',params:{userId:123},plan:'private'}"
+    localhost:8080/#/demo9/123?plan=private
+获取传值，demo9页面中，写在mounted内，this.$route.query.plan
+```
+
+用法3：
+```
+this.$router.push({path:'/demo1'})
+dom绑定事件(<button @click="toUrl">跳转页面demo2</button>)，toUrl方法写在methods内
+```
+
+用法4：
+```
+this.$router.push({name:'demo1',params:{userId:123}})
+dom绑定事件(<button @click="toUrl">跳转页面demo2</button>)，toUrl方法写在methods内，与标签跳转一致，可传参
+```
+
+---
+
+## Section 14 状态管理vuex - demo14
+
+多页面传数据不适合用router-link,利用vuex使用公共数据池
+
+`npm install --save vuex`
+
+全局页面状态管理，所有页面共享数据
+
+取数据步骤：
+
+1. 导入vuex 找到src下的main.js文件 修改main.js文件
+```
+import store from './store/'
+//然后在new Vue中添加store
+```   
+
+2. 在src下创建store文件夹，在store文件夹下创建index.js文件，编辑index.js文件
+```
+  import Vue from 'vue'
+  import Vuex from 'vuex'
+  Vue.use(Vuex)
+  export default new Vuex.Store({
+      //两个共享数据
+      state: {
+          count: 0,
+          num: 1
+      },
+      mutations: {
+          increment (state, num){
+              state.count ++
+              state.num = num;
+          }
+      },
+      //actions里调用mutations里面的方法
+      actions: {
+          increment({ commit }, obj){
+              commit('increment', obj)
+          }
+      }
+  })
+```
+
+3. 在页面中调用 this.$store.state.count 可获取到store内的count值
+
+改数据步骤:
+`this.$store.dispatch('increment',100000)`
+
+---
+
+## Section 15 slot插槽 - demo15
+
+常用于组件调用中，例如：
+
+```
+import slots from '@/components/slot.vue'
+components:{
+    "slot-test":slots
+}
+<slot-test>
+  <div>123</div>
+  <p>456</p>
+  <p slot="bottom">888</p>
+</slot-test>
+```
+
+---
+
+## Section 16 vue-resource请求 - demo16
+1. 引入vue-resource包
+`npm install --save vue-resource`
+
+2. 修改main.js -> import 与 Vue.use
+
+3. 发送请求
+```
+mounted(){
+  //get
+  this.$http.get('/someUrl').then(response => {
+    console.log(response.body);
+  }, response => {
+    //error callback
+  });
+  //post
+  this.$http.post('someUrl',{foo:'bar'}).then(response => {
+    console.log(response.body);
+  }, response => {
+    //error callback
+  });
+  //传参
+  this.$http.get("someUrl", {
+      params: { foo: "bar" },
+      headers: { "X-Custom": "..." }
+  })
+  .then(
+    response => {
+      console.log(response.body);
+    },
+    response => {
+      //error callback
+    }
+  );
+}
+```
+  
+---
+
+## Section 17 Mint UI组件库 - demo17
+1. `npm install --save mint-ui`
+2. 修改main.js -> import 与 Vue.use
+3. 导入样式
+`import 'mint-ui/lib/style.css'`
+4. 页面中导入(以Toast为例) 
+`import { Toast } from 'mint-ui';`
+5. 在mounted里面直接调用 Toast('提示信息');
+
+
+## Section 18 一个小demo - home/detail
+> 此demo为移动端项目
+1. 在App.vue中注释掉vue logo和页面默认样式，在main.js中引用 
+`import './config/rem'`
+
+2. `npm install px2rem-loader`
+
+3. build -> untils.js
+
+修改:
+```
+const px2remLoader = {
+  loader: 'px2rem-loader',
+  options: {
+    remUnit: 50 //自定义
+  }
+}
+// generate loader string to be used with extract text plugin
+function generateLoaders (loader, loaderOptions) {
+const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader,px2remLoader]
+```
+4. 自动转化
+
+width: 20px;          自动将20px转化为rem
+
+height: 40px; /*no*/  禁止将40px转化成rem
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
